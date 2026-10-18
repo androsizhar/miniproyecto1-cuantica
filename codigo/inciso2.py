@@ -68,8 +68,11 @@ def plot_energies(energias,*,a=1,ax=None):
     if ax is None:
         _, ax = plt.subplots()
 
+    y_prev = -np.inf
     for (index,e) in enumerate(energias,start=1):
-        ax.text(1, e, f"  n={index}", va="center_baseline")
+        y = max(e, y_prev + 6)
+        ax.text(1, y, f"  n={index}", va="center_baseline")
+        y_prev = y
     for e in energias:
         plt.hlines(e,-a,a,lw=0.6)
     plt.ylabel("Energía") 
