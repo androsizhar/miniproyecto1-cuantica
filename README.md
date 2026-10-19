@@ -2,7 +2,7 @@
 
 **Sistemas simples en 1D: dinámica del pozo finito de potencial simétrico y asimétrico**
 
-Tecnológico de Monterrey · Fundamentación de la electrodinámica (Gpo 601)
+Tecnológico de Monterrey · Análisis de sistemas cuánticos (Gpo 603)
 Profesor: Julio César Gutiérrez Vega · Octubre 2026
 
 | Integrante | Matrícula |
