@@ -4,7 +4,7 @@ __pycache__/
 .venv/
 venv/
 
-# LaTeX (archivos auxiliares)
+# LaTeX build files
 *.aux
 *.log
 *.toc
@@ -17,7 +17,7 @@ venv/
 *.bbl
 *.blg
 
-# Sistema / editores
+# OS / editors
 .DS_Store
 __MACOSX/
 .vscode/
