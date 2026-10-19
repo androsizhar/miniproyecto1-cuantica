@@ -70,8 +70,9 @@ def plot_energies(energias,*,a=1,ax=None):
 
     y_prev = -np.inf
     for (index,e) in enumerate(energias,start=1):
-        y = max(e, y_prev + 6)
-        ax.text(1, y, f"  n={index}", va="center_baseline")
+        y = max(e, y_prev + 7.5)
+        ax.plot([a, a + 0.12, a + 0.22], [e, e, y], color="gray", lw=0.5)
+        ax.text(a + 0.25, y, f"n={index}  ($E$={e:.2f})", va="center", fontsize=8)
         y_prev = y
     for e in energias:
         plt.hlines(e,-a,a,lw=0.6)

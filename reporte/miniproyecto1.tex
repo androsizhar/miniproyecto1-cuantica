@@ -30,6 +30,7 @@
 \usepackage{amssymb}
 \usepackage{hyperref}
 \usepackage{tcolorbox}
+\tcbuselibrary{breakable}
 \usepackage{listings}
 \usepackage{xcolor}
 
@@ -58,6 +59,7 @@
 \lstset{style=code}
 
 \newtcolorbox{pregunta}[1]{
+  breakable,
   colback=blue!5!white,
   colframe=blue!75!black,
   title=Inciso (#1)
@@ -103,7 +105,7 @@ Andros Izhar Alvarado Sánchez \small {A00842107@tec.mx}
 \date{
     \vspace{1.5cm}
 \textbf{Profesor:} Julio César Gutiérrez Vega\\
-\textbf{Curso:} Fundamentación de la electrodinámica (Gpo 601)\\
+\textbf{Curso:} Análisis de sistemas cuánticos (Gpo 603)\\
 \vspace{1.5cm}
 \today % Sets date
 }
@@ -117,7 +119,10 @@ Andros Izhar Alvarado Sánchez \small {A00842107@tec.mx}
 
 \input{mini1/parte1}
 \input{mini1/parte2}
-
+\section{Reflexion final}
+%\input{andres.tex}
+%\input{luis.tex}
+%\input{andros.tex}
 \input{mini1/appendix}
 
 \end{document}

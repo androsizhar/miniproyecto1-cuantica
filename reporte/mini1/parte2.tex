@@ -8,7 +8,7 @@ U(x) = \begin{cases} U_1, & x < 0, \\ 0, & 0 \leq x < L, \\ U_2, & x \geq L, \en
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\linewidth]{mini1/pozo antisimétrico.png}
+    \includegraphics[width=0.5\linewidth]{mini1/pozo_antisimetrico.png}
     \caption{Pozo infinito de potencial de anchura $L$ y paredes con potenciales diferentes}
     \label{fig:1}
 \end{figure}
@@ -169,33 +169,99 @@ Ahora, se reescribe la ecuación maestra, multiplicando y dividiendo por $L^2$..
 \begin{pregunta}{3.}
 Deduce una expresión cerrada para el número total $N$ de estados estacionarios atrapados $\varphi_n(x)$ que el pozo soporta dados los parámetros $U_1$, $U_2$ y $L$.
 \end{pregunta}
- 
+Juguemos algebraicamente con la ecuación maestra (2.4), con el fin de poder encontrar otra representación apóyenos a poder comprender el ángulo z. Para esto construyamos el lado derecho como una suma de ángulo de la tangente:
+\begin{equation}
+    \tan(\omega L) = \frac{\frac{\kappa}{\omega}+\frac{\gamma}{\omega}}{1 - \frac{\kappa}{\omega}\frac{\gamma}{\omega}}
+\end{equation}
+Con esto podemos fijarnos que podemos definir las siguientes igualdades:
+\begin{align*}
+    \tan(a) &= \frac{\kappa}{\omega}\\
+    \tan(b) &= \frac{\gamma}{\omega}\\
+    \tan(\arctan(\frac{\kappa}{\omega})+\arctan(\frac{\gamma}{\omega})) &= \frac{\arctan(\frac{\kappa}{\omega})+\arctan(\frac{\gamma}{\omega})}{1-\arctan(\frac{\kappa}{\omega})*\arctan(\frac{\gamma}{\omega})} 
+\end{align*}
+De esta manera obtenemos que para la $\tan(z)$  es igual a la suma de los ángulos antes mencionados.\\
+Recordemos también la siguiente propiedad de la tangente
+\begin{equation*}
+    \tan(\theta) = \tan(\theta + k\pi) 
+\end{equation*}
+Donde k pertenece a los enteros, por lo que esto nos dictaminara la cantidad de estados atrapados, recordemos que nosotros buscamos que nuestro contador se construya con base en empezar en 0, por lo que $k = n-1 $ para que cuando tengamos el estado 1, sea la base y k valga 0. Con esto mencionado podemos hacer el siguiente desarrollo:
+\begin{align}
+    \tan(z) &= \tan(\arctan(\frac{\kappa}{\omega})+\arctan(\frac{\gamma}{\omega})) \\
+    z &=  \arctan(\frac{\kappa}{\omega})+\arctan(\frac{\gamma}{\omega}) + (n-1)\pi
+\end{align}
+Podemos reescribir esto en términos de $z$ y $z_max$ de la siguiente manera:
+\begin{equation}
+    z = \arctan(\frac{\sqrt{z^2_{max}-z^2}}{z})+ \arctan(\frac{\sqrt{cz^2_{max}-z^2}}{z}) + (n-1)\pi
+\end{equation}
+Con esto podemos despejar para n y obtener la función de estados atrapados:
+\begin{equation}
+    n = \frac{1}{\pi} [z-\arctan(\frac{\sqrt{z^2_{max}-z^2}}{z})-\arctan(\frac{\sqrt{cz^2_{max}-z^2}}{z})]+1
+\end{equation}
+Pero queremos el máximo que pueda haber, para esto debemos de obtener él $z \Rightarrow z_{max}$, por lo que podemos llegar a la siguiente expresión. teniendo en cuenta algunos términos se cancelan:
+\begin{equation}
+    \boxed{n = \frac{1}{\pi}[z_{max} -\arctan(\sqrt{c-1})]+1}
+\end{equation}
+De esta manera obtenemos una expresión del máximo de estados atrapados considerando el tope de energía con el potencial 1. Hay que aclarar que de esta función al momento de colocar valores y para que se cumpla es un entero, hay que tomar la expresión de la fracción como un redondeo hacia abajo, para respetar a n como entero.
 \begin{pregunta}{4.}
 El pozo finito simétrico siempre soporta al menos un estado atrapado, sin importar lo estrecho o poco profundo que sea. ¿Es lo mismo para el pozo asimétrico? ¿Pueden darse las condiciones para que el pozo asimétrico no soporte ningún estado? De ser así, ¿cuál es la condición de corte para no tener estados atrapados en el pozo?
 \end{pregunta}
- 
+ Para desarrollar esto primero tomemos el caso de tener simetría, donde hacemos que $c = 1$ por lo que veríamos que con la ecuación 2.11 se convierte en lo siguiente:
+ \begin{align*}
+     1 &= \frac{z_{max}}{\pi} +1\\
+     0 &= \frac{z_{max}}{\pi}\\
+     0 &= \frac{L\sqrt{2mU_1}}{\hbar \pi}
+ \end{align*}
+ Donde entonces recordemos que la función piso actúa sobre la última fracción, lo que nos indica que si hacemos el potencial muy chico o más estrecho siempre existirá un estado atrapado, ya que esa fracción desea en mayor medida ser 0 o tener un valor entre 0 y 1, distinto a 1.\\
+Por lo que ahora veamos para el pozo asimétrico donde c $\neq$ 1. Para esto podemos ver el rango de la función arcotangente, con el fin de encontrar los valores máximos y mínimos para nuestra ecuación (2.11)
+\begin{align*}
+    0 < \arctan&(\sqrt{c-1})<\frac{\pi}{2}
+\end{align*}
+Entonces podemos observar que para el caso inferior de 0 es el caso del simétrico, con esto mencionado empecemos a comparar como debe actuar la resta del $z_{max}$ con el arcotangente. Tomemos que para disminuir el pozo o el estrecho está conectado con el valor de $z_{max}$ por lo que incluso este valor puede ser lo suficiente chico para que el arcotangente sea mayor:
+\begin{align*}
+    z_{max} &< arctan(\sqrt{c-1}\\
+    z_{max} &- arctan(\sqrt{c-1})<0\\
+\end{align*}
+Al ver que estos valores son negativos siempre, podemos observar que a lo máximo y sin tocarlo esa función puede ser 0 o -$\frac{\pi}{2}$, si hacemos que $z_{max}$ sea 0 (ya que podemos reducirlo o hacerlo lo suficiente chico tal que se acerque en el límite) y en respuesta el arcotangente está en su rango dándonos lo siguiente:
+\begin{equation*}
+    -\frac{\pi}{2} <z_{max} - \arctan(\sqrt{c-1}<0
+\end{equation*}
+De manera que al dividir él $\pi$ nos resulte lo siguiente:
+\begin{equation*}
+    -\frac{1}{2} <\frac{z_{max} - arctan(\sqrt{c-1}}{\pi}<0
+\end{equation*}
+De esta manera podemos ahora si observar que estos valores siempre están en un rango de -0.5 y 0, por lo que si respetamos el hecho de la función piso que habíamos dicho de tomar el valor más bajo que sería el -1 (recordemos debía respetar ser un entero) podemos observar que al introducir en la ecuación 2.11 el valor de estados atrapados ($n = -1+1)$ es igual a 0, por lo que nos es imposible decir que por más estrecho y bajo es el pozo contiene al menos un estado.\\
+Además, podemos agregar como más específicos que la condición fuerte realizamos con respecto a variables físicas es lo siguiente:
+\begin{equation}
+    0< \frac{L}{\hbar}\sqrt{2mU_1}\leq \arctan(\sqrt{\frac{U_2-U_1}{U_1}})
+\end{equation}
 \begin{pregunta}{5.}
 Una vez que las eigenenergías $E_n$ han sido determinadas, las amplitudes de las funciones en cada segmento del potencial se pueden encontrar de forma algebraica cerrada (similarmente al caso de las Ecs. (18) y (19) del pozo simétrico). Usando la condición de normalización de $\varphi_n(x)$ y las conexiones entre las amplitudes de las funciones en cada segmento, determina analíticamente las amplitudes. Simplifica todo lo que se pueda.
 \end{pregunta}
 
-% Creo que está mal dado que se nos pide utilizar las eigenenergías, pero pues no lo quise borrar.
-Por lo que se prosigue a realizar la normalización...
-
 \begin{equation*}
-\int_{-\infty}^{\infty}\varphi'(x)\varphi(x)dx = 1 \Rightarrow \frac{1}{C} = \int_{-\infty}^{0} e^{+\kappa x}\,dx + \int_{0}^{L}\left[\cos(\omega x) + \frac{\kappa}{\omega}\sin(\omega x)\right]dx + \int_{L}^{\infty}\beta e^{\gamma L} e^{-\gamma x}\,dx
+\int_{-\infty}^{\infty}\varphi'(x)\varphi(x)dx = 1 \Rightarrow \frac{1}{C^2} = \int_{-\infty}^{0} e^{2\kappa x}\,dx + \int_{0}^{L}\left[\cos(\omega x) + \frac{\kappa}{\omega}\sin(\omega x)\right]^2dx + \int_{L}^{\infty}(\beta *e^{\gamma L} e^{-\gamma x})^2dx
 \end{equation*}
 donde
 \begin{equation*}
 \beta \equiv \left[\frac{\sin(\omega L)\left[\kappa^2+\omega^2\right]}{\omega[\gamma+\kappa]}\right]
 \end{equation*}
+\begin{equation}
+    \frac{1}{C^2} = \int_{-\infty}^{0} e^{2\kappa x} \, dx + \int_{0}^{L} \left[ \cos^2(\omega x) + \frac{2\kappa}{\omega}\sin(\omega x)\cos(\omega x) + \frac{\kappa^2}{\omega^2}\sin^2(\omega x) \right] dx + \beta^2 e^{2\gamma L} \int_{L}^{\infty} e^{-2\gamma x} \, dx
+\end{equation}
+Donde podemos reducir algunas cosas:
 \begin{equation*}
-\Rightarrow \frac{1}{C} = \frac{1}{\kappa} + \left[\frac{1}{\omega}\sin(\omega x) - \frac{\kappa}{\omega^2}\cos(\omega x)\right]_0^L + \frac{\beta}{\gamma}
+    \frac{1}{C^2} = \int_{-\infty}^{0} e^{2\kappa x} \, dx + \int_{0}^{L} \left[ \frac{1}{2}\left(1 + \frac{\kappa^2}{\omega^2}\right) + \frac{1}{2}\left(1 - \frac{\kappa^2}{\omega^2}\right)\cos(2\omega x) + \frac{\kappa}{\omega}\sin(2\omega x) \right] dx + \beta^2 \int_{L}^{\infty} e^{-2\gamma(x - L)} \, dx
+\end{equation*}
+Integramos:
+\begin{equation*}
+\Rightarrow \frac{1}{C^2} = \frac{1}{2\kappa} + \left[ \frac{x}{2}\left(1 + \frac{\kappa^2}{\omega^2}\right) + \frac{\sin(2\omega x)}{4\omega}\left(1 - \frac{\kappa^2}{\omega^2}\right) - \frac{\kappa}{2\omega^2}\cos(2\omega x) \right]_0^L + \frac{\beta^2}{2\gamma}
 \end{equation*}
 \begin{equation*}
-\frac{1}{C} = \frac{1}{\kappa} + \left[\frac{1}{\omega}\sin(\omega L) + \frac{\kappa}{\omega^2}\big(1 - \cos(\omega L)\big)\right] + \frac{\beta}{\gamma}e^{-\gamma L}
+\Rightarrow \frac{1}{C^2} = \frac{1}{2\kappa} + \frac{L}{2}\left(1 + \frac{\kappa^2}{\omega^2}\right) + \frac{\sin(2\omega L)}{4\omega}\left(1 - \frac{\kappa^2}{\omega^2}\right) + \frac{\kappa}{\omega^2}\sin^2(\omega L) + \frac{\beta^2}{2\gamma}
 \end{equation*}
+Finalmente:
 \begin{equation*}
-\boxed{C = \left[\frac{1}{\kappa} + \frac{1}{\omega}\sin(\omega L) + \frac{\kappa}{\omega^2}\big(1-\cos(\omega L)\big) + \frac{\beta}{\gamma}e^{-\gamma L}\right]^{-1}}
+\boxed{C = \left[ \frac{1}{2\kappa} + \frac{L}{2}\left(1 + \frac{\kappa^2}{\omega^2}\right) + \frac{\sin(2\omega L)}{4\omega}\left(1 - \frac{\kappa^2}{\omega^2}\right) + \frac{\kappa}{\omega^2}\sin^2(\omega L) + \frac{\beta^2}{2\gamma} \right]^{-1/2}}
 \end{equation*}
 
 
@@ -213,4 +279,67 @@ Ahora toca evaluar numéricamente los resultados analíticos obtenidos anteriorm
  
 \textit{Sugerencia: Verifiquen que sus resultados analíticos obtenidos para el pozo asimétrico se reducen al caso del pozo simétrico cuando $c = 1$.}
 \end{pregunta}
+ Primeramente, para visualizar los valores para c=2 podemos hacerlo mediante la intersección de las ecuaciones en 2.5, pero, en lugar de graficarlo para z, hagámoslo para valores de Energía. De esta manera podemos ver de mejor manera los cruces en donde se encuentran estos valores de energía que nos permiten nuestros estados. Se puede visualizar de la siguiente manera:
+ \begin{figure}[H]
+     \centering
+     \includegraphics[width=0.8\linewidth]{Screenshot_20261018_202209.png}
+     \caption{Gráfica de la función tangente y la función que corresponden a las energías y choques con valores de energía de cada uno}
+     \label{fig:placeholder}
+ \end{figure}
+ Para poder visualizar los engestados, podemos hacerlo con de manera más visual, poniendo las mismas funciones dentro del pozo. De esta manera vemos el fenómeno ondulatorio de nuestras 9 eigenenergias :
  
+ \begin{figure}[H]
+     \centering
+     \includegraphics[width=0.8\linewidth]{Screenshot_20261018_202740.png}
+     \caption{Gráfica de eigenestados alrededor del pozo asimétrico, con respectivo número de eigenenergia}
+     \label{fig:placeholder}
+ \end{figure}
+ Para este último es necesario recuperar primeramente el pulso gaussiano que se nos dio antes:
+ \begin{equation}
+\phi(x,0) = f(x; b, c) = A \exp\left[ -\frac{(x-c)^2}{b^2} \right] \exp\left( \mathrm{i}\frac{M v_0}{\hbar} x \right), \tag{5}
+\end{equation}
+Retomando entonces que el valor de A de la ecuación 1.36. Por lo que primero obtengamos los valores de $c_n$ para nuestros estados que lo haremos su proyección en nuestra base, para poder obtenerlo como en la ecuación 3.\\
+De esta manera obtenemos los siguientes valores:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\linewidth]{Screenshot_20261018_214050.png}
+    \caption{Valores de C encontrados de la base}
+    \label{fig:placeholder}
+\end{figure}
+De esta manera podemos también elevar al cuadrado cada uno y encontrar la probabilidad de que al tener todos los estados nos dé 1, lo cual al hacerlo numéricamente nos da 0.9930, lo cual es muy cercano al 1, esto debido a que al no ser analítico tiene defectos.\\
+Por lo que ahora construyamos la función de densidad de probabilidad, primero tomemos como antes g(x,t) que definimos de la siguiente manera:
+\begin{equation}
+    g(x,t) = \sum c_n \varphi_n e^{-iE_nt/\hbar}
+\end{equation}
+De esta manera podemos obtener los vectores que conforman nuestro vector, para poder obtener $g(x,t)^2$ debemos multiplicarlo por su conjugado por lo que al final modelaríamos algo como:
+\begin{equation}
+    P(x,t) = \sum_{n=1}^{N} \sum_{m=1}^{N} c_n c_m^* \varphi_n(x) \varphi_m(x) \exp \left[ -i \frac{(E_n - E_m)t}{\hbar} \right]
+\end{equation}
+Por lo que ahora podemos iterar esta misma fórmula con el fin de ir construyendo con respecto al tiempo nuestra función de probabilidad, con esto podemos construir un mapa de calor donde podamos ver como cambia $g(x,t)^2$ con el tiempo y como sus valores se ven más probables de estar en ciertos momentos.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Screenshot_20261018_221451.png}
+    \caption{Mapa de calor sobre la evolución de la probabilidad en el espacio dentro del pozo también}
+    \label{fig:placeholder}
+\end{figure}
+Por lo que ahora veamos el cálculo para el primer momento, recordemos el primer momento se puede ver también de la siguiente manera:  
+\begin{equation*}
+    <x>(t) = \int x P(x,t)dx
+\end{equation*}
+Por lo que podemos reutilizar el cálculo anterior de nuestra $g(x,t)^2$ para poder construir el primer momento y con su variación en el tiempo, resultando en la siguiente gráfica:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Screenshot_20261018_222546.png}
+    \caption{Evolución temporal del valor esperado de x en 5 segundos}
+    \label{fig:placeholder}
+\end{figure}
+Por lo que de esta manera obtenemos los momentos donde el valor esperado o el promedio de donde está la partícula contenida suele tener variaciones gracias a las energías que contiene, pero si podemos apreciar que se cumple que el valor inicial es el centro de nuestro pulso gaussiano en el tiempo 0.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Screenshot_20261018_234223.png}
+    \caption{Captura del video del cambio de la probabilidad variando con respecto al tiempo}
+    \label{fig:placeholder}
+\end{figure}
+Con esto finalmente podemos ver como la probabilidad de la partícula varía con el tiempo, siendo que inicialmente podemos ver nuestro pulso gaussiano. Es importante mencionar consideraciones físicas, como que nuestra gaussiana como se puede ver no tiene la altura suficiente para llegar a 4, esto se debe a la construcción de los 9 estados, es insuficiente a comparación de analíticamente donde si se pueda ver la representación completa.
+\newpage
+

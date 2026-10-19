@@ -1,4 +1,4 @@
-\section{Parte 1: Análisis dinámico del pozo infinito simétrico [45 puntos]}
+\section{Parte 1: Análisis dinámico del pozo finito simétrico [45 puntos]}
 
 
 \begin{pregunta}{1.}
@@ -36,7 +36,7 @@ Se inicia con la condición de normalización, que implica que la partícula deb
 \end{equation}
 
 
-Por simetría, las primeras dos integrales de ecuación \ref{eq: norm:prob} son simétrica y juntas dan un resultado de $B_n^2/q_n \exp (-2q_n a)$, mientras que la última integral se resuelve usando la identidad $\cos^2(k_nx)=\frac{1}{2}(1+\cos(2k_nx))$. Por lo que ecuación \ref{eq: norm:prob} se simplifica a:
+Por simetría, las primeras dos integrales de ecuación \ref{eq: norm:prob} son simétricas y juntas dan un resultado de $B_n^2/q_n \exp (-2q_n a)$, mientras que la última integral se resuelve usando la identidad $\cos^2(k_nx)=\frac{1}{2}(1+\cos(2k_nx))$. Por lo que ecuación \ref{eq: norm:prob} se simplifica a:
 
 \begin{equation}
     1= \frac{B^2_n}{q_n} \exp (-2q_na)+A_n^2\left(a+\frac{1}{2k_n}\sin(2ak_n)\right)
@@ -130,6 +130,16 @@ Usando \ref{eq: ec maestra impar} y multiplicando por $q_n$ \ref{eq: A2 impar}, 
     A_n =& \sqrt{\frac{q_n}{aq_n+1}} \label{eq: A impar}
 \end{align}
 
+Esta expresión es equivalente a la Ec. (19) del enunciado. De la ecuación maestra \ref{eq: ec maestra impar} se tiene que $1/q_n = -\tan(k_na)/k_n$, por lo que
+
+\begin{equation}
+    A_n^2 = \frac{1}{a+\frac{1}{q_n}} = \frac{1}{a-\frac{\tan(ak_n)}{k_n}} = \frac{k_n}{ak_n-\tan(ak_n)}
+    \quad\Rightarrow\quad
+    A_n = \sqrt{\frac{k_n}{ak_n-\tan(ak_n)}}
+\end{equation}
+
+que es justamente la forma de la Ec. (19).
+
 Por lo que $B_n$ llega de \ref{eq: cond front impar}:
 
 \begin{equation}
@@ -162,12 +172,12 @@ Esta integral puede hacerse con la regla del trapecio si muestrean la coordenada
 El código se puede ver en el apéndice. Véase el Apéndice \ref{ap: sec1prob2}. Ahora sí, continuemos con el problema.
 \\ 
 
-Primero, se muestra en la Tabla \ref{tab:energies} los distintos valores de las energías encontrados al resolver la ecuación maestra. Como el pozo es finito, hay un finito de energías permisibles para estados atrapados. En este caso, se obtienen $11$ eigenenergías. 
+Primero, se muestra en la Tabla \ref{tab:energies} los distintos valores de las energías encontrados al resolver la ecuación maestra. Como el pozo es finito, hay un número finito de energías permisibles para estados atrapados. En este caso, se obtienen $11$ eigenenergías. 
 \begin{table}[h]
 \centering
 \begin{tabular}{cccc}
 \hline
-$n$ & Even energies & $n$ & Odd energies \\
+$n$ & Energías pares & $n$ & Energías impares \\
 \hline
 1 & 0.8887 & 2& 3.5531 \\
 3 & 7.9880 & 4& 14.1841 \\
@@ -182,17 +192,17 @@ $n$ & Even energies & $n$ & Odd energies \\
 \end{table}
 
 
-Asimismo, en la Figura \ref{fig:eigenenergies}, se puede ver de una forma gráfica las energías, en comparación al pozo finito. Se observa que al inicio, están muy juntas mientras que las últimas están muy cerca del fin del pozo. 
+Asimismo, en la Figura \ref{fig:eigenenergies}, se puede ver de una forma gráfica las energías, en comparación al pozo finito. Se observa que las primeras energías están muy juntas, mientras que las últimas quedan muy cerca del borde del pozo, $U_0=110$. 
 
-Se espera que los eigenestados con energías bajas se parezcan a los eigenestados del pozo infinito, mientras que los eigenenergias con energías altas tengan una alta penetración en el pozo.
+Se espera que los eigenestados con energías bajas se parezcan a los eigenestados del pozo infinito, mientras que los eigenestados con energías altas penetren más en las paredes del pozo.
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\linewidth]{mini1/energiaspermisibles.png}
-    \caption{Se muestran como rayas todas las energías permitidas en el pozo. Para los valores específicos de $a=1, U_0=110, V_0=1, M=\frac{\pi^2}{8}$, obtuvieron 11 energías. Se observa que la separación entre cada energía va aumentando conforme aumenta el nivel.}
+    \includegraphics[width=0.75\linewidth]{mini1/mini1/energiaspermisibles_2.png}
+    \caption{Se muestran como rayas todas las energías permitidas en el pozo. Para los valores específicos de $a=1, U_0=110, V_0=1, M=\frac{\pi^2}{8}$, se obtuvieron 11 energías. Se observa que la separación entre cada energía va aumentando conforme aumenta el nivel.}
     \label{fig:eigenenergies}
 \end{figure}
 
-En la Figura \ref{fig:eigenestados}, se pueden observar los primeros 8 eigenestados del pozo finito. Como se esperaba, los primeros eigenestados, se parecen al pozo infinito, dado que casi no se llega a penetrar la pared. En cambio, los estados grandes este efecto es más notorio. Ahora, lo último que queda es checar la ortonormalidad de las ecuaciones. Se realiza la siguiente integral de manera computacional:
+En la Figura \ref{fig:eigenestados}, se pueden observar los primeros 8 eigenestados del pozo finito. Como se esperaba, los primeros eigenestados, se parecen al pozo infinito, dado que casi no se llega a penetrar la pared. En cambio, en los estados de mayor energía este efecto es más notorio. Ahora, lo último que queda es checar la ortonormalidad de las ecuaciones. Se realiza la siguiente integral de manera computacional:
 
 \begin{equation}
 \int_{-\infty}^{\infty} \varphi_p^{*}(x) \, \varphi_q(x) \, \mathrm{d}x = \delta_{pq}. 
@@ -201,7 +211,7 @@ En la Figura \ref{fig:eigenestados}, se pueden observar los primeros 8 eigenesta
 \begin{figure}
     \centering
     \includegraphics[width=0.75\linewidth]{eigenestados.png}
-    \caption{Los eigenestados de las primeras 8 energías del pozo. Se observa que están todas entre el rango de -1 a 1, que debe ser así para ser normalizadas. En la región del pozo, se muestran oscilaciones de senos o cosenos, mientras que después del pozo se observan exponenciales por la zona prohibida. Para energías altas, se llega a penetrar más en la zona prohibida.}
+    \caption{Los eigenestados de las primeras 8 energías del pozo. Todos están normalizados gracias a las amplitudes analíticas $A_n$ y $B_n$. En la región del pozo, se muestran oscilaciones de senos o cosenos, mientras que después del pozo se observan exponenciales por la zona prohibida. Para energías altas, se llega a penetrar más en la zona prohibida.}
     \label{fig:eigenestados}
 \end{figure}
 
@@ -212,7 +222,7 @@ Ahora, para poder ver que realmente los eigenestados son ortonormales, utilizamo
     S_{ij} = \int_{-\infty}^{\infty} \varphi_i^{*}(x) \, \varphi_j(x) \, \mathrm{d}x
 \end{equation}
 
-El resultado de $S$ se puede apreciar en la Figura \ref{fig:overlaps}. Claramente aquí se demuestra la ortogonalidad dado que representa una matriz identidad, que es equivalente a la delta de Dirac que se utiliza en la ecuación \ref{eq:ortonormality}.
+El resultado de $S$ se puede apreciar en la Figura \ref{fig:overlaps}. Claramente aquí se demuestra la ortogonalidad dado que representa una matriz identidad, que es equivalente a la delta de Kronecker que se utiliza en la ecuación \ref{eq:ortonormality}.
 
 
 \begin{figure}
@@ -226,7 +236,7 @@ El resultado de $S$ se puede apreciar en la Figura \ref{fig:overlaps}. Clarament
 
 
 
- 
+ \newpage
 \begin{pregunta}{3.}
 \textbf{Evolución temporal.} En el problema anterior hemos encontrado la base de eigenestados ortogonales del pozo finito, las funciones $\varphi_n(x)$, donde $n = \{1, 2, \ldots, N\}$ con $N$ siendo el máximo número de eigenestados atrapados en el pozo. Programen una rutina computacional para simular la evolución temporal de una función de onda inicial $\phi(x,0) = f(x)$ dentro del pozo finito de potencial. Como base del algoritmo, usen la expansión estándar en términos de eigenestados
 \begin{equation}
@@ -271,7 +281,151 @@ $\rightarrow$ Hagan un video de la evolución del pulso. Importante: Formato mp4
 \textbf{Consideraciones físicas a tomar en cuenta:} Es importante notar que para expandir el pulso inicial $f(x)$ solo tenemos un número finito de eigenestados atrapados $\varphi_n(x)$ del pozo finito. En general la base finita de estados $\varphi_n(x)$ no será una base completa para expandir cualquier función arbitraria $f(x)$ inicial del pozo. Supongamos que $g(x)$ sea la función aproximada de $f(x)$ usando la base finita, $g(x) = \sum_{n=1}^{N} c_n \varphi_n(x)$. La evolución de $g(x)$ preserva energía ya que se puede descomponer de manera exacta en eigenestados del sistema. Pero esto no va a ocurrir con la función exacta $f(x)$, ya que una parte de la función no puede reconstruirse con la base finita de los estados atrapados $\varphi_n(x)$. La consecuencia física de esto es que cuando el pulso $f(x)$ evoluciona dentro del pozo una parte de su energía se disipará por las paredes como ondas viajeras que se alejan del pozo. En un tiempo largo, el pulso que quede dentro del pozo corresponderá a una función que puede construirse exclusivamente con los eigenestados $\varphi_n(x)$. La analogía de este problema en óptica corresponde a la pérdida de energía de un pulso de luz en el acoplamiento de una fibra óptica. La reconstrucción completa de la función $f(x)$ podría hacerse usando la superposición finita de estados atrapados [lo cual nos da la función $g(x)$] más una superposición continua de ondas viajeras con energía mayor a $U_0$ [lo cual nos da el complemento $f(x) - g(x)$].
 \end{enumerate}
 \end{pregunta}
- 
+\subsection*{Sobre el código:}
+
+El código del inciso a) se puede ver en el Apéndice \ref{ap: sec1prob3a} y el del inciso b) en el Apéndice \ref{ap: sec1prob3b}.
+% Andros Izhar 
+\subsection*{Inciso a)}
+
+Para la evolución se utilizan los $N=11$ eigenestados del inciso 2, con las amplitudes analíticas.
+
+Primero se calcula la constante de normalización. Escribimos la ecuación (4) como $\phi(x,0)=A\sum_{n=1}^{4}a_n\varphi_n(x)$, donde $a_1=1$, $a_2=0.7$, $a_3=-1.2\mathrm{i}$ y $a_4=2-\mathrm{i}$. Se inicia con la condición de normalización:
+
+\begin{align}
+    1 =& \int_{-\infty}^{\infty}|\phi(x,0)|^2\,dx = |A|^2\sum_{p=1}^{4}\sum_{q=1}^{4}a_p^*a_q\int_{-\infty}^{\infty}\varphi_p^*(x)\varphi_q(x)\,dx
+\end{align}
+
+Por la ortonormalidad de los eigenestados [ecuación \ref{eq:ortonormality}], la integral es $\delta_{pq}$, por lo que todos los términos cruzados se anulan:
+
+\begin{align}
+    1 =& |A|^2\sum_{p=1}^{4}\sum_{q=1}^{4}a_p^*a_q\,\delta_{pq} = |A|^2\sum_{n=1}^{4}|a_n|^2 \\
+    1 =& |A|^2\left(1^2+0.7^2+|-1.2\mathrm{i}|^2+|2-\mathrm{i}|^2\right) \\
+    1 =& |A|^2\left(1+0.49+1.44+5\right) = 7.93\,|A|^2
+\end{align}
+
+\begin{equation}
+    \boxed{A=\frac{1}{\sqrt{7.93}}\approx 0.3551}
+\end{equation}
+
+Por lo que los coeficientes de la ecuación (2) son $c_n=Aa_n$, es decir, $c_1=A$, $c_2=0.7A$, $c_3=-1.2\mathrm{i}A$, $c_4=(2-\mathrm{i})A$ y $c_n=0$ para $n\geq5$. Con esto se evalúa la ecuación (2) para $t\in[0,10]$ y el valor esperado de la posición se calcula con la regla del trapecio:
+
+\begin{equation}
+    \langle x\rangle(t) = \frac{\int_{-\infty}^{\infty}x\,|\phi(x,t)|^2\,dx}{\int_{-\infty}^{\infty}|\phi(x,t)|^2\,dx}
+    \label{eq: valor esperado x}
+\end{equation}
+
+Se divide entre la norma porque en el inciso b) la función que se evoluciona no tiene norma uno.
+
+En la Figura \ref{fig:3a mapa} se muestra la densidad de probabilidad. Como solo intervienen los primeros cuatro estados, que casi no penetran las paredes, la probabilidad se queda prácticamente dentro del pozo y forma un patrón de interferencia que se mueve de un lado a otro.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{figuras/p1_3a_mapa.png}
+    \caption{Densidad de probabilidad $|\phi(x,t)|^2$ para el estado inicial de la ecuación (4). Las líneas rojas marcan las paredes del pozo en $x=\pm a$.}
+    \label{fig:3a mapa}
+\end{figure}
+
+Para entender el comportamiento de $\langle x\rangle$, se sustituye la ecuación (2) en el numerador de la ecuación \ref{eq: valor esperado x}:
+
+\begin{equation}
+    \langle x\rangle(t) = \sum_{p,q}c_p^*c_q\,x_{pq}\,e^{-\mathrm{i}(E_q-E_p)t/\hbar}, \qquad x_{pq}=\int_{-\infty}^{\infty}\varphi_p(x)\,x\,\varphi_q(x)\,dx
+\end{equation}
+
+Como $\varphi_1$ y $\varphi_3$ son pares y $\varphi_2$ y $\varphi_4$ son impares, cuando $p$ y $q$ tienen la misma paridad el integrando de $x_{pq}$ es impar y $x_{pq}=0$. Entonces solo contribuyen las parejas $(1,2)$, $(3,2)$, $(3,4)$ y $(1,4)$, y $\langle x\rangle$ oscila con las frecuencias $\omega_{pq}=(E_q-E_p)/\hbar$. Usando la Tabla \ref{tab:energies}:
+
+\begin{equation*}
+    \omega_{12}=2.66, \qquad \omega_{32}=4.43, \qquad \omega_{34}=6.20, \qquad \omega_{14}=13.30
+\end{equation*}
+
+La oscilación más marcada tiene periodo $2\pi/\omega_{34}\approx1.01$, ya que $c_3$ y $c_4$ son los coeficientes más grandes, y está modulada por las demás frecuencias, como se ve en la Figura \ref{fig:3a x}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{figuras/p1_3a_x.png}
+    \caption{Valor esperado de la posición $\langle x\rangle(t)$ para el estado de la ecuación (4).}
+    \label{fig:3a x}
+\end{figure}
+
+\subsection*{Inciso b)}
+
+Primero se calcula la constante de normalización de manera analítica. Se inicia con la condición de normalización:
+
+\begin{equation}
+    1 = \int_{-\infty}^{\infty}|\phi(x,0)|^2\,dx
+\end{equation}
+
+Como $|\exp(\mathrm{i}Mv_0x/\hbar)|^2 = 1$, la fase no contribuye a la norma, y elevando al cuadrado la Gaussiana se tiene:
+
+\begin{equation}
+    1 = |A|^2\int_{-\infty}^{\infty}\exp\left[-\frac{2(x-c)^2}{b^2}\right]dx
+    \label{eq: norm gauss}
+\end{equation}
+
+Para resolver la integral se hace el cambio de variable
+
+\begin{equation*}
+    u=\frac{\sqrt{2}}{b}(x-c), \qquad du=\frac{\sqrt{2}}{b}\,dx \quad\Rightarrow\quad dx=\frac{b}{\sqrt{2}}\,du
+\end{equation*}
+
+Los límites de integración no cambian, por lo que la ecuación \ref{eq: norm gauss} se vuelve:
+
+\begin{align}
+    1 =& |A|^2\frac{b}{\sqrt{2}}\int_{-\infty}^{\infty}e^{-u^2}\,du \\
+    1 =& |A|^2\frac{b}{\sqrt{2}}\sqrt{\pi} = |A|^2\,b\sqrt{\frac{\pi}{2}}
+\end{align}
+
+donde se usó la integral Gaussiana $\int_{-\infty}^{\infty}e^{-u^2}du=\sqrt{\pi}$. Despejando y tomando $A$ real y positiva:
+
+\begin{align}
+    |A|^2 =& \frac{1}{b}\sqrt{\frac{2}{\pi}} \\
+    A =& \left(\frac{2}{\pi b^2}\right)^{1/4}
+\end{align}
+
+\begin{equation}
+    \boxed{A=\left(\frac{2}{\pi b^2}\right)^{1/4}}
+\end{equation}
+
+Para $b=0.2$ se obtiene $A\approx1.997$. Se integró en toda la recta real porque, como dice el enunciado, la Gaussiana es prácticamente cero en las paredes.
+
+El enunciado no fija $v_0$, por lo que se tomó $v_0=8$. Los coeficientes $c_n$ se calcularon con la ecuación (3) usando la regla del trapecio. Sumando sus módulos al cuadrado se obtiene la probabilidad que se puede representar con los estados atrapados:
+
+\begin{equation}
+    \sum_{n=1}^{11}|c_n|^2\approx0.910
+\end{equation}
+
+Es decir, solo el $91\%$ del pulso se puede construir con los estados atrapados. El $9\%$ restante corresponde a componentes con energía mayor a $U_0$, que son las que escaparían del pozo como ondas viajeras, tal como se menciona en las consideraciones físicas. En la Figura \ref{fig:3b fg} se compara el pulso inicial $f(x)$ con su reconstrucción $g(x)=\sum_{n=1}^{N}c_n\varphi_n(x)$: tiene el mismo centro, pero es más baja y ancha, ya que su área es $0.910$ en lugar de $1$.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{figuras/p1_3b_fg.png}
+    \caption{Pulso Gaussiano inicial $|f(x)|^2$ con $b=0.2$, $c=0.4$ y $v_0=8$, y su reconstrucción $|g(x)|^2$ con los $N=11$ estados atrapados.}
+    \label{fig:3b fg}
+\end{figure}
+
+El pulso parte de $x=c=0.4$ con velocidad $v_0=8$, por lo que se espera que llegue a la pared $x=a$ en un tiempo
+
+\begin{equation*}
+    t\approx\frac{a-c}{v_0}=\frac{1-0.4}{8}\approx0.075
+\end{equation*}
+
+Esto coincide con la Figura \ref{fig:3b mapa}, donde el pulso viaja hacia la derecha, llega a la pared y se refleja. Como se excitan los 11 estados, el pulso se dispersa rápido y después de unos cuantos rebotes llena todo el pozo con un patrón de interferencia.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{figuras/p1_3b_mapa.png}
+    \caption{Densidad de probabilidad $|\phi(x,t)|^2$ del pulso Gaussiano en el pozo simétrico.}
+    \label{fig:3b mapa}
+\end{figure}
+
+Esto también se ve en la Figura \ref{fig:3b x}: $\langle x\rangle$ sube al acercarse a la pared, rebota y después oscila cada vez menos alrededor del centro del pozo. La evolución completa se puede ver en el video \texttt{pulso\_pozo\_simetrico.mp4}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{figuras/p1_3b_x.png}
+    \caption{Valor esperado de la posición $\langle x\rangle(t)$ del pulso Gaussiano en el pozo simétrico.}
+    \label{fig:3b x}
+\end{figure}
+
 \begin{pregunta}{4.}
 En clase analizamos el potencial escalón definido por
 \begin{equation}
@@ -294,4 +448,141 @@ La fase $\gamma$ representa el desfasamiento de la onda reflejada con respecto a
 \item[b)] Evalúen la ecuación característica que obtuvieron en el inciso (a) con los datos numéricos de los incisos anteriores y demuestren que las eigenenergías son coincidentes.
 \end{enumerate}
 \end{pregunta}
- 
+
+\subsection*{Sobre el código:}
+
+El inciso a) es analítico. El código del inciso b) se puede ver en el Apéndice \ref{ap: sec1prob4b}.
+
+\subsection*{Inciso a)}
+
+Dentro del pozo ($|x|<a$) el potencial es cero, por lo que un estado estacionario se puede escribir como la superposición de dos ondas viajeras contrapropagantes:
+
+\begin{equation}
+    \varphi(x) = \alpha\,e^{\mathrm{i}kx} + \beta\,e^{-\mathrm{i}kx}, \qquad k=\sqrt{\frac{2ME}{\hbar^2}}
+\end{equation}
+
+Cada pared del pozo es localmente un escalón de altura $U_0$, por lo que se puede usar el resultado de las ecuaciones (8) y (9). Midiendo la coordenada desde la pared, la onda que llega a ella se refleja con un corrimiento de fase
+
+\begin{equation}
+    \gamma = -2\arctan\left(\frac{q}{k}\right), \qquad q=\sqrt{\frac{2M(U_0-E)}{\hbar^2}}
+    \label{eq: gamma}
+\end{equation}
+
+Como el pozo es simétrico, el corrimiento de fase es el mismo en las dos paredes.
+
+Ahora se sigue a la onda durante un ciclo completo. Parte de la pared izquierda $x=-a$ viajando hacia la derecha y recorre una distancia $2a$ hasta $x=a$, por lo que acumula una fase $2ka$. En $x=a$ se refleja y gana la fase $\gamma$. Regresa recorriendo otra vez $2a$, acumulando $2ka$, y al reflejarse en $x=-a$ gana otra vez $\gamma$. Por lo que el desfase total en un ciclo es:
+
+\begin{equation}
+    \Delta\Phi = 2ka + \gamma + 2ka + \gamma = 4ka + 2\gamma
+\end{equation}
+
+La condición de resonancia pide que después de un ciclo la onda se reproduzca a sí misma, es decir, que el desfase total sea un múltiplo entero de $2\pi$:
+
+\begin{equation}
+    4ka + 2\gamma = 2\pi m, \qquad m=0,1,2,\ldots
+\end{equation}
+
+Sustituyendo la ecuación \ref{eq: gamma} y dividiendo entre 2:
+
+\begin{align}
+    4ka - 4\arctan\left(\frac{q}{k}\right) =& 2\pi m \\
+    2ka - 2\arctan\left(\frac{q}{k}\right) =& \pi m
+\end{align}
+
+Como $k,q>0$, se puede usar la identidad $\arctan(q/k)=\pi/2-\arctan(k/q)$:
+
+\begin{align}
+    2ka - \pi + 2\arctan\left(\frac{k}{q}\right) =& \pi m \\
+    2ka =& \pi(m+1) - 2\arctan\left(\frac{k}{q}\right)
+\end{align}
+
+Definiendo $n=m+1$, con $n=1,2,3,\ldots$:
+
+\begin{equation}
+    2ka = n\pi - 2\arctan\left(\frac{k}{q}\right)
+    \label{eq: unificada k}
+\end{equation}
+
+Ahora se usa la parametrización de clase $\mu=(2a/\pi)k$. Por la ecuación (13), $k^2+q^2=K^2$ con $\mu_{\text{máx}}=(2a/\pi)K$, por lo que
+
+\begin{equation*}
+    k=\frac{\pi}{2a}\mu, \qquad q=\frac{\pi}{2a}\sqrt{\mu_{\text{máx}}^2-\mu^2} \quad\Rightarrow\quad \frac{k}{q}=\frac{\mu}{\sqrt{\mu_{\text{máx}}^2-\mu^2}}
+\end{equation*}
+
+Si se piensa en un triángulo rectángulo con cateto opuesto $\mu$, cateto adyacente $\sqrt{\mu_{\text{máx}}^2-\mu^2}$ e hipotenusa $\mu_{\text{máx}}$, se ve que
+
+\begin{equation*}
+    \arctan\left(\frac{\mu}{\sqrt{\mu_{\text{máx}}^2-\mu^2}}\right) = \arcsin\left(\frac{\mu}{\mu_{\text{máx}}}\right)
+\end{equation*}
+
+Sustituyendo en la ecuación \ref{eq: unificada k}, con $2ka=\pi\mu$:
+
+\begin{equation}
+    \pi\mu = n\pi - 2\arcsin\left(\frac{\mu}{\mu_{\text{máx}}}\right)
+\end{equation}
+
+Dividiendo entre $\pi$ se llega a la ecuación característica unificada:
+
+\begin{equation}
+    \boxed{\mu_n = n - \frac{2}{\pi}\arcsin\left(\frac{\mu_n}{\mu_{\text{máx}}}\right), \qquad n=1,2,\ldots}
+    \label{eq: ec unificada}
+\end{equation}
+
+con $E_n=V_0\mu_n^2$. Con una sola ecuación se obtienen todos los estados, y $n$ es directamente el número cuántico del estado.
+
+Para comprobar que esta ecuación contiene a las ecuaciones (14) y (17), se toma la tangente de $\frac{\pi}{2}\mu = \frac{n\pi}{2} - \theta$, donde $\theta=\arcsin(\mu/\mu_{\text{máx}})$:
+
+\begin{itemize}
+    \item Si $n$ es impar, $\tan\left(\frac{n\pi}{2}-\theta\right)=\cot\theta$, por lo que
+    \begin{equation*}
+        \tan\left(\frac{\pi}{2}\mu\right) = \cot\theta = \frac{\sqrt{\mu_{\text{máx}}^2-\mu^2}}{\mu},
+    \end{equation*}
+    que es la ecuación (14) de los estados pares.
+    \item Si $n$ es par, $\tan\left(\frac{n\pi}{2}-\theta\right)=-\tan\theta$, por lo que
+    \begin{equation*}
+        \tan\left(\frac{\pi}{2}\mu\right) = -\tan\theta = -\frac{\mu}{\sqrt{\mu_{\text{máx}}^2-\mu^2}},
+    \end{equation*}
+    que es la ecuación (17) de los estados impares.
+\end{itemize}
+
+Por lo que la ecuación \ref{eq: ec unificada} contiene a ambas: los $n$ impares dan los estados pares y los $n$ pares dan los impares.
+
+Además, si $U_0\to\infty$ entonces $\mu_{\text{máx}}\to\infty$, el arcoseno se anula y se recupera $\mu_n=n$, es decir $E_n=n^2V_0$, que son las energías del pozo infinito. En el pozo finito el término del arcoseno hace que $\mu_n<n$, por lo que las energías son menores; esto se debe a que la onda penetra en las paredes.
+
+Finalmente, la función $F(\mu)=\mu+\frac{2}{\pi}\arcsin(\mu/\mu_{\text{máx}})$ es creciente y vale $F(\mu_{\text{máx}})=\mu_{\text{máx}}+1$, por lo que hay una solución por cada entero $n<\mu_{\text{máx}}+1$. Entonces el número de estados atrapados es
+
+\begin{equation}
+    N=\lceil\mu_{\text{máx}}\rceil
+\end{equation}
+
+que siempre es al menos uno. Para $\mu_{\text{máx}}=\sqrt{110}\approx10.49$ se obtiene $N=11$, igual que en la Tabla \ref{tab:energies}.
+
+
+\subsection*{Inciso b)}
+
+Se resolvió numéricamente la ecuación \ref{eq: ec unificada} para $n=1,2,\ldots$ con el método de Brent (\texttt{brentq}), buscando cada raíz en el intervalo $[0,\mu_{\text{máx}}]$. Se obtuvieron $N=11$ soluciones, igual que con las ecuaciones de paridad. En la Tabla \ref{tab: unificada} se comparan las energías obtenidas con las de la Tabla \ref{tab:energies}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cccc}
+\hline
+$n$ & $E_n$ (Ecs. 14 y 17) & $E_n$ (Ec. unificada) & Diferencia \\
+\hline
+1  & 0.8887   & 0.8887   & $4.0\times10^{-15}$ \\
+2  & 3.5531   & 3.5531   & $4.5\times10^{-14}$ \\
+3  & 7.9880   & 7.9880   & $1.1\times10^{-12}$ \\
+4  & 14.1841  & 14.1841  & $5.3\times10^{-13}$ \\
+5  & 22.1268  & 22.1268  & $1.1\times10^{-14}$ \\
+6  & 31.7943  & 31.7943  & $7.1\times10^{-15}$ \\
+7  & 43.1531  & 43.1531  & $0$ \\
+8  & 56.1502  & 56.1502  & $5.7\times10^{-14}$ \\
+9  & 70.6928  & 70.6928  & $7.8\times10^{-13}$ \\
+10 & 86.5879  & 86.5879  & $4.3\times10^{-14}$ \\
+11 & 103.2200 & 103.2200 & $7.0\times10^{-12}$ \\
+\hline
+\end{tabular}
+\caption{Comparación de las eigenenergías obtenidas con las ecuaciones de paridad (14) y (17) y con la ecuación característica unificada. Las diferencias son del orden de la precisión numérica del método, por lo que las energías coinciden.}
+\label{tab: unificada}
+\end{table}
+
+Como se observa, las once energías coinciden y la diferencia máxima es de $7.0\times10^{-12}$, que corresponde a la tolerancia numérica del método de búsqueda de raíces. Por lo que se demuestra que la condición de resonancia de un ciclo completo es equivalente a resolver el problema con las condiciones de frontera, con la ventaja de que no es necesario separar los estados por paridad.

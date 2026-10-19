@@ -9,13 +9,16 @@ venv/
 *.log
 *.toc
 *.out
-*.synctex.gz
-*.fls
-*.fdb_latexmk
 *.lof
 *.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
 
-# Mac / editores
+# Sistema / editores
 .DS_Store
 __MACOSX/
 .vscode/
+.idea/
