@@ -11,7 +11,7 @@ Numerical and analytical study of a quantum particle trapped in a one-dimensiona
 **Course project** · Quantum Systems Analysis (*Análisis de sistemas cuánticos*, Gpo 603) · Tecnológico de Monterrey · October 2026
 Instructor: Julio César Gutiérrez Vega
 
-**Authors:** Luis Daniel González Alcocer · Andrés Saul Pérez Martínez · Andros Izhar Alvarado Sánchez
+**Authors:** Luis Daniel González Alcocer · Andres Saul Pérez Martínez · Andros Izhar Alvarado Sánchez
 
 ---
 
