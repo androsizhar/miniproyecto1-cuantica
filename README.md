@@ -53,7 +53,23 @@ which also shows that the number of bound states is $N = \lceil \mu_{\max} \rcei
 
 ## Part 2 — Asymmetric finite well
 
-$U(x) = U_1$ for $x < 0$, $0$ inside $0 \le x < L$, and $U_2 = c\,U_1$ for $x \ge L$. With $L = 2$, $U_1 = 85$ and $c = 2$ the well holds **9 bound states**:
+$U(x) = U_1$ for $x < 0$, $0$ inside $0 \le x < L$, and $U_2 = c\,U_1$ for $x \ge L$. 
+
+This results in the following master equation:
+```math
+\tan(z) = \frac{z\sqrt{z_{\max}^2 - z^2} + z\sqrt{c\,z_{\max}^2 - z^2}}{z^2 - \sqrt{z_{\max}^2 - z^2}\,\sqrt{c\,z_{\max}^2 - z^2}}
+```
+where
+```math
+\begin{gathered}
+z = \sqrt{\frac{2mE}{\hbar^2}}\,L \\
+z_{max} = \frac{L}{\hbar}\sqrt{2mU_1}
+\end{gathered}
+```
+
+
+
+With $L = 2$, $U_1 = 85$ and $c = 2$ the well holds **9 bound states**:
 
 | $n$ | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 |---|---|---|---|---|---|---|---|---|---|
